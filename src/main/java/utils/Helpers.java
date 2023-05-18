@@ -27,7 +27,6 @@ public class Helpers {
 	        prop.load(input);
 	        resposta = prop.getProperty(path);
 	        // get the property value and print it out
-	        System.out.println(resposta);
 	
 	    } catch (IOException ex) {
 	        ex.printStackTrace();
