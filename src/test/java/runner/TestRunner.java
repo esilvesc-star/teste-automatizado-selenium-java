@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-	    plugin = {"json:json/cucumber.json", "junit:junit/cucumber.xml"},
+	    plugin = {"json:target/json/cucumber.json", "junit:target/junit/cucumber.xml"},
 //        monochrome = true,
         glue = {"steps"},
         features = "./src/main/java/features/",

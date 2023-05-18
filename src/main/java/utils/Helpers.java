@@ -6,7 +6,9 @@ import java.util.Properties;
 
 public class Helpers {
 
-    public static Collection<Object> existentPropertiesValuesList() throws IOException {
+    public static String caminho;
+
+	public static Collection<Object> existentPropertiesValuesList() throws IOException {
         String filePath = "src/test/resources/application.properties";
         FileInputStream in = new FileInputStream(filePath);
         Properties props = new Properties();
