@@ -7,11 +7,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class GlobalDriver {
 	public static WebDriver webdriver;
 	public static ChromeOptions opts;
-    
+	Helpers helpers;
+	
     public static WebDriver get() throws Exception {
     	capabilites();	
-    	System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\kcabarit\\eclipse-workspace\\Alura\\selenium\\prova\\provaselenium\\drivers\\chromedriver.exe");
+    	System.setProperty(Helpers.carregueUmUrquivoDaPropriedades("webdriver.chrome.driver"),
+    			Helpers.carregueUmUrquivoDaPropriedades("path.webdriver.chrome"));
 		return webdriver = new ChromeDriver(opts);
     }
     
