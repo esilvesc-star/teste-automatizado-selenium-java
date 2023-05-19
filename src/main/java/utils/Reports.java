@@ -17,11 +17,13 @@ public class Reports{
 		public static String nomePastaEvidencia = null;
 
 	    public static void takeScreenShotPasta() throws Exception{
-			Calendar data = Calendar.getInstance();
+	    	PATH="./target/screenshots/" + File.separator; 
+	    	File f = new File (PATH);
+	    	Helpers.DeletarArquivo(f);
+	    	Calendar data = Calendar.getInstance();
 			String nomePastaTime =  ("Time_"+data.get(Calendar.HOUR_OF_DAY)+"."+data.get(Calendar.MINUTE)+"."+data.get(Calendar.SECOND));
 			String nomePastaDate =  ("Date_" +data.get(Calendar.DAY_OF_MONTH)+"-"+data.get(Calendar.MONTH) +"-" + data.get(Calendar.YEAR) +"_");
 			nomePastaEvidencia = (nomePastaDate + nomePastaTime);
-			PATH="./target/screenshots/" + File.separator; 
 			Files.createDirectory(Paths.get(PATH, nomePastaEvidencia));
 		}
 		

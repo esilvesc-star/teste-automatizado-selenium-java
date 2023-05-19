@@ -33,4 +33,15 @@ public class Helpers {
 	    }
 		return resposta;
     }
+   
+   public static void DeletarArquivo(File file) {
+	  if (file.exists()) {
+		for (File subfile : file.listFiles()) {
+			if (subfile.isDirectory()) {
+				DeletarArquivo(subfile);
+		    }
+            subfile.delete();
+        }
+	  }
+   }    
 }

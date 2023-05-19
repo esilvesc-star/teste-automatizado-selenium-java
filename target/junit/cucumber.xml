@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="48.957" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Busca Google NTTDATA" name="Validar a busca NTTDATA no Google" time="48.832">
+<system-out><![CDATA[
+Given que Marcelo faz uma busca no google "https://www.google.com.br" com pesquisa "NTTDATA BRASIL" e acessar o Primeiro link apresentado na pesquisa..passed
+When estiver na pagina, clicar em carreira e acessar junte-se a nossa equipe pesquisar "Arquiteto"..passed
+Then devera conter 3 vagas e ser vaga de "Arquiteto"........................passed
+]]></system-out>
+</testcase>
+</testsuite>
