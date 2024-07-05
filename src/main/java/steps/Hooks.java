@@ -21,7 +21,7 @@ public class Hooks extends GlobalDriver{
 	
 	@Before
 	public void beforeEveryScenario() throws Exception {
-		Reports.takeScreenShotPasta();
+//		Reports.takeScreenShotPasta();
 		GlobalDriver.get();
 		GlobalDriver.maximize();
 	}

@@ -28,6 +28,10 @@ public class NTTDATAComponent extends NTTDATAAction{
 	
 	@FindBy(xpath = "//div[@class='portlet-body']//div[@ng-repeat='vacancy in vm.model.vacancies | limitTo:vm.paginationModel.pageSize']//div//div//h4")
 	public List<WebElement>vagasDaPesquisa;
+
+
+
+
 }
 	
 	

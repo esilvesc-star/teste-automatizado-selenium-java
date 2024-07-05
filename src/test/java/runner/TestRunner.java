@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 //        monochrome = true,
         glue = {"steps"},
         features = "./src/main/java/features/",
-//        tags = "@MORCIR-11967",
+        tags = "@test",
         snippets = SnippetType.CAMELCASE
         )
 
