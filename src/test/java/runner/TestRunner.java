@@ -7,11 +7,13 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-	    plugin = {"json:target/json/cucumber.json", "junit:target/junit/cucumber.xml"},
+	    plugin = {"json:target/json/cucumber.json", 
+	    		"junit:target/junit/cucumber.xml"
+	    		,"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
 //        monochrome = true,
         glue = {"steps"},
-        features = "./src/main/java/features/",
-        tags = "@test",
+        features = "./src/test/resources/features/",
+        tags = "@test123",
         snippets = SnippetType.CAMELCASE
         )
 

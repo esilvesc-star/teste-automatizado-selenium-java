@@ -1,0 +1,8 @@
+#cabeçalho PDF evidencia de testes
+cabecalho:
+  modulo: PFIN – [Backlog Técnico] Remover o toggle da Matriz de acesso - Chrome
+  data: 15/03/2022
+  descricao: 01.17 Validar permissão de acesso ao formulário de Aposentadoria usuário Labrador
+  analista: Kleber Cabarite
+  imgLE: ./src/test/resources/imagensEvidencias/bra.png
+  imgLD: ./src/test/resources/imagensEvidencias/ntt.png
