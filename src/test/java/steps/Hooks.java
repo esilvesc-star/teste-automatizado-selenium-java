@@ -9,11 +9,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-import browser.Chrome;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.AfterStep;
@@ -38,7 +35,6 @@ public class Hooks{
 	@AfterStep
 	public void afterStep(Scenario scenario) throws Exception{
       if(!isNull(GlobalDriver.get())){
-//      	  Reports.takeScreenShotPasta();
     	  reports.captureEvidence(driver, scenario.getName());
       }
 	}
@@ -51,7 +47,6 @@ public class Hooks{
 	@Before
     public static void setup(Scenario scenario) {
 		reports = new Reports(driver, comAllure);
-
         GlobalDriver.set();
         System.out.println("\n\n\nTESTE CENARIO " + scenario.getSourceTagNames().toString() + " \n\n\n\n");
         driver = GlobalDriver.get();
@@ -59,19 +54,11 @@ public class Hooks{
 
 	@After
 	public void finish(Scenario scenario) throws Exception {
-//        Chrome.close();
     	List<String> tagNames = (List<String>) scenario.getSourceTagNames();
-//        String tag = scenario.getSourceTagNames().toString().substring(3, 19).replaceAll("[^ a-zA-Z0-9]+","");
-//        System.out.println(tag);
-//	    String screenshotName = scenario.getName().replaceAll("","");
-
-        reports.generatePdfReport();
-
-        
+        reports.generatePdfReport(); 
         if (scenario.getStatus().name().contains("FAILED")) {
             stringListaParaPrintAposTodosCenarios.add(String.join(" ", tagNames));
         }
-
 	      GlobalDriver.close();
     }    
 	
