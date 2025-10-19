@@ -1,8 +1,13 @@
 package utils;
 
 import java.io.*;
+import java.time.Duration;
 import java.util.Collection;
 import java.util.Properties;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class Helpers {
 
@@ -43,5 +48,9 @@ public class Helpers {
             subfile.delete();
         }
 	  }
-   }    
+   }
+	public void scroll(WebDriver driver, WebElement elemento) throws Exception {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", elemento);
+	}
 }

@@ -7,18 +7,17 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-	    plugin = {"json:target/json/cucumber.json", 
-	    		"junit:target/junit/cucumber.xml"
-	    		,"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
+        plugin = {"json:target/json/cucumber.json",
+                "junit:target/junit/cucumber.xml"
+                , "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
 //        monochrome = true,
         glue = {"steps"},
         features = "./src/test/resources/features/",
-        tags = "@test123",
+        tags = "@testeQarti",
         snippets = SnippetType.CAMELCASE
-        )
+)
 
 
 public class TestRunner {
-
 
 }

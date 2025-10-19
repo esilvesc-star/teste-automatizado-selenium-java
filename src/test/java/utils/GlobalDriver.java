@@ -3,7 +3,7 @@ package utils;
 //import browser.Browser;
 import org.openqa.selenium.WebDriver;
 
-import browser.Browser;
+import browser.Chrome;
 
 import static java.util.Objects.isNull;
 
@@ -14,8 +14,9 @@ public class GlobalDriver {
 
     public static void set() {
         if (driver == null) {
-            driver = Browser.getWebDriver();
-//        	driver = Chrome.getDriver();
+//            driver = Browser.getWebDriver();
+        	Chrome chrome = new Chrome();
+        	driver = chrome.getDriver();
         }
     }
 

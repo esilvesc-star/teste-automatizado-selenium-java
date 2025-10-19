@@ -1,0 +1,22 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Maven
+target/
+
+# Drivers e executáveis
+*.exe
+*.jar
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs e temporários
+*.log
