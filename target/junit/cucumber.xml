@@ -1,11 +1,45 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<testsuite name="Cucumber" time="16.573" tests="1" skipped="0" failures="0" errors="0">
-<testcase classname="Acessar página inicial" name="Preencher formulario no site QuartiTestes" time="14.445">
+<testsuite name="Cucumber" time="24.984" tests="6" skipped="0" failures="0" errors="0">
+<testcase classname="Validar login inválido" name="Validar login inválido - Example #1.1" time="4.642">
 <system-out><![CDATA[
-Given que o usuário acessa a página "https://conteudo.qarti.com.br/conheca-a-qarti?utm_source=google&utm_medium=cpc&utm_campaign=hr-pesquisa-servicos&utm_term=testes-automatizados&utm_content=pesquisa&gad_source=1&gad_campaignid=22515379863&gbraid=0AAAAA-kBw5PO5OQH57-QB102QFeUpk6xj&gclid=Cj0KCQjwgKjHBhChARIsAPJR3xfW1e3LWPVQdcoVEijL2R8E1bLsWtWAKfdg5gfMEelmE4JoU4GKD58aAierEALw_wcB".passed
-When ele preenche os campos do formulário:..................................passed
-And clica no botão "Quero entrar em contato"................................passed
-Then a página "Obrigada pelo interesse em nossos serviços" deve ser exibida.passed
+Given que eu acesse o site "https://www.saucedemo.com/".....................passed
+When o usuário tenta logar com "" e "secret_sauce"..........................passed
+Then o sistema deve exibir a mensagem "Epic sadface: Username is required"..passed
+]]></system-out>
+</testcase>
+<testcase classname="Validar login inválido" name="Validar login inválido - Example #1.2" time="3.055">
+<system-out><![CDATA[
+Given que eu acesse o site "https://www.saucedemo.com/".....................passed
+When o usuário tenta logar com "standard_user" e "".........................passed
+Then o sistema deve exibir a mensagem "Epic sadface: Password is required"..passed
+]]></system-out>
+</testcase>
+<testcase classname="Validar login inválido" name="Validar login inválido - Example #1.3" time="3.025">
+<system-out><![CDATA[
+Given que eu acesse o site "https://www.saucedemo.com/".....................passed
+When o usuário tenta logar com "usuario_invalido" e "secret_sauce"..........passed
+Then o sistema deve exibir a mensagem "Epic sadface: Username and password do not match any user in this service".passed
+]]></system-out>
+</testcase>
+<testcase classname="Validar login inválido" name="Validar login inválido - Example #1.4" time="2.799">
+<system-out><![CDATA[
+Given que eu acesse o site "https://www.saucedemo.com/".....................passed
+When o usuário tenta logar com "locked_out_user" e "secret_sauce"...........passed
+Then o sistema deve exibir a mensagem "Epic sadface: Sorry, this user has been locked out.".passed
+]]></system-out>
+</testcase>
+<testcase classname="002 Validar login válido" name="Efetuar login com credenciais válidas" time="3.12">
+<system-out><![CDATA[
+Given que eu acesse o site "https://www.saucedemo.com/".....................passed
+When o usuário faz login com "standard_user" e "secret_sauce"...............passed
+Then devo ser redirecionado para a página de produtos.......................passed
+]]></system-out>
+</testcase>
+<testcase classname="003 Validar Menu Lateral" name="Validar exibição das opções do menu lateral" time="6.585">
+<system-out><![CDATA[
+Given que eu faça login com usuário "standard_user" e senha "secret_sauce"..passed
+When eu abro o menu lateral.................................................passed
+Then devem ser exibidas as opções:..........................................passed
 ]]></system-out>
 </testcase>
 </testsuite>

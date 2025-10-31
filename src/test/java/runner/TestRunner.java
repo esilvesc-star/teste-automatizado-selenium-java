@@ -13,10 +13,9 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 //        monochrome = true,
         glue = {"steps"},
         features = "./src/test/resources/features/",
-        tags = "@testeQarti",
+        tags = "@regressivo",
         snippets = SnippetType.CAMELCASE
 )
-
 
 public class TestRunner {
 

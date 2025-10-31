@@ -24,7 +24,7 @@ import java.io.ByteArrayInputStream;
 	public static String nomePastaEvidencia = null;
     private List<byte[]> screenshots = new ArrayList<>();
     private String pdfFilePath;
-    static String comAllure = Helpers.carregueUmUrquivoDaPropriedades("comAllure");
+    static String comAllure = Helpers.carregueUmArquivoDaPropriedades("comAllure");
     private String module;        // Exemplo: "PFIN – [Backlog Técnico]"
     private String date;          // Data no formato dd/MM/yyyy
     private String description;   // Exemplo: "Validar permissão de acesso ao formulário"
@@ -40,7 +40,7 @@ import java.io.ByteArrayInputStream;
         this.analyst = YamlConfig.readConfig("testeYaml", "cabecalho.analista");
         this.leftImagePath = YamlConfig.readConfig("testeYaml", "cabecalho.imgLE");
         this.rightImagePath = YamlConfig.readConfig("testeYaml", "cabecalho.imgLD");
-        this.evidencePath = Helpers.carregueUmUrquivoDaPropriedades("reportsPathPDF");
+        this.evidencePath = Helpers.carregueUmArquivoDaPropriedades("reportsPathPDF");
         
         // Define o caminho do PDF com um timestamp
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

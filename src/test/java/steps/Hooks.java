@@ -23,116 +23,116 @@ import utils.GlobalDriver;
 import utils.Helpers;
 import utils.Reports;
 
-public class Hooks{
+public class Hooks {
     // Instância principal do WebDriver (compartilhada entre os testes)
     public static WebDriver driver;
+
     // Lê do arquivo de propriedades se o Allure deve ser utilizado ("true" ou "false")
-    static String comAllure = Helpers.carregueUmUrquivoDaPropriedades("comAllure");
+    static String comAllure = Helpers.carregueUmArquivoDaPropriedades("comAllure");
+
     // Lista que armazena as tags dos cenários que falharam
     static ArrayList<String> stringListaParaPrintAposTodosCenarios = new ArrayList<>();
+
     // Caminhos para os diretórios de relatórios
     static String pathResults = "./target/allure-results/";
     static String pathReport = "src/test/resources/test-results/";
+
     // Instância do gerador de relatórios
     private static Reports reports;
 
     // -----------------------------------
     // Executa APÓS cada passo
     // -----------------------------------
-	@AfterStep
-	public void afterStep(Scenario scenario) throws Exception{
-        // Se o driver estiver ativo, captura uma evidência (screenshot)
-      if(!isNull(GlobalDriver.get())){
-    	  reports.captureEvidence(driver, scenario.getName());
-      }
-	}
+    @AfterStep
+    public void afterStep(Scenario scenario) throws Exception {
+        if (!isNull(GlobalDriver.get())) {
+            reports.captureEvidence(driver, scenario.getName());
+        }
+    }
+
     // -----------------------------------
     // Executa ANTES de cada passo (Given/When/Then)
     // -----------------------------------
-	@BeforeStep
-	public void beforeStep(){
-        // Metodo vazio — pode ser usado futuramente para logs ou preparação
-	}
+    @BeforeStep
+    public void beforeStep() {
+        // Pode ser usado futuramente para logs ou preparação
+    }
 
     // -----------------------------------
     // Executa ANTES de cada cenário
     // -----------------------------------
-	@Before
-    public static void setup(Scenario scenario) {
+    @Before
+    public void setup(Scenario scenario) {
         // Inicializa o gerenciador de relatórios
-		reports = new Reports(driver, comAllure);
+        reports = new Reports(driver, comAllure);
+
         // Cria e configura o WebDriver global
         GlobalDriver.set();
-        // Exibe no console as tags do cenário que será executado
-        System.out.println("\n\n\nTESTE CENARIO " + scenario.getSourceTagNames().toString() + " \n\n\n\n");
-        // Atribui a instância do WebDriver à variável local
         driver = GlobalDriver.get();
-	}
+
+        // 🔹 Lê a URL base do arquivo application.properties
+        String urlBase = Helpers.carregueUmArquivoDaPropriedades("urlBase");
+
+        // 🔹 Navega até a URL base (ex: https://www.saucedemo.com/)
+        if (urlBase != null && !urlBase.isEmpty()) {
+            driver.navigate().to(urlBase);
+            System.out.println("URL carregada: " + urlBase);
+        } else {
+            throw new RuntimeException("A URL base não foi configurada no arquivo application.properties!");
+        }
+
+        // Exibe as tags do cenário no console
+        System.out.println("\n\n--- INICIANDO CENÁRIO --- " + scenario.getSourceTagNames() + "\n\n");
+    }
+
     // -----------------------------------
     // Executa APÓS cada cenário
     // -----------------------------------
-	@After
-	public void finish(Scenario scenario) throws Exception {
-        // Obtém as tags do cenário executado
-    	List<String> tagNames = (List<String>) scenario.getSourceTagNames();
-        // Gera o relatório PDF individual do cenário
+    @After
+    public void finish(Scenario scenario) throws Exception {
+        List<String> tagNames = new ArrayList<>(scenario.getSourceTagNames());
         reports.generatePdfReport();
-        // Se o cenário falhou, adiciona suas tags à lista de falhas
+
         if (scenario.getStatus().name().contains("FAILED")) {
             stringListaParaPrintAposTodosCenarios.add(String.join(" ", tagNames));
         }
-        // Fecha o navegador
-	      GlobalDriver.close();
+
+        GlobalDriver.close();
     }
-    // ===========================================================
-    // MÉTODOS EXECUTADOS DURANTE O CICLO DE VIDA DOS TESTES
-    // ===========================================================
 
     // -----------------------------------
     // Executa ANTES de todos os testes
     // -----------------------------------
-
     @BeforeAll
     public static void setupAll() {
-        // Limpa os diretórios de relatórios anteriores
-    	AllureGenerator.deletarArquivos(new File(pathResults));
-    	AllureGenerator.deletarArquivos(new File(pathReport));
+        AllureGenerator.deletarArquivos(new File(pathResults));
+        AllureGenerator.deletarArquivos(new File(pathReport));
     }
 
     // -----------------------------------
     // Executa APÓS todos os testes
     // -----------------------------------
-	@AfterAll
+    @AfterAll
     public static void finishAll() throws IOException, InterruptedException {
-        // Se o Allure estiver habilitado, gera o relatório HTML final
-		if(comAllure.equals("true")){
-            // Cria um nome único para o arquivo baseado na data/hora
-	    	String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy-HH-mm-ss"));
-	    	String novoNomeArquivoAllure = time + "-index.html";
-            // Gera e renomeia o relatório Allure
-	    	AllureGenerator.gerarAllureReportHTML(pathResults,pathReport);
-		   	AllureGenerator.RenomearArquivo(pathReport,novoNomeArquivoAllure);
-    	}
-        // Exibe no console todos os cenários que falharam
-		System.out.println("**** lista FAILED apos todos cenarios ****");
-		System.out.println(stringListaParaPrintAposTodosCenarios);
-        // Fecha o driver, se ainda estiver aberto
-	   	GlobalDriver.close();
-    }
-    // ===========================================================
-    // MÉTODOS AUXILIARES
-    // ===========================================================
-
-    // Metodo utilitário para abrir uma URL no navegador
-	public static void openBrowser(String url) {
-        // Navega até a URL informada
-        if(!isNull(driver)){
-//        	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-//        	driver.manage().timeouts().pageLoadTimeout(100,TimeUnit.SECONDS);
-            driver.navigate().to(url);
+        if (comAllure.equals("true")) {
+            String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy-HH-mm-ss"));
+            String novoNomeArquivoAllure = time + "-index.html";
+            AllureGenerator.gerarAllureReportHTML(pathResults, pathReport);
+            AllureGenerator.RenomearArquivo(pathReport, novoNomeArquivoAllure);
         }
-        else {
-            // Caso o driver ainda não tenha sido inicializado
+
+        System.out.println("**** Cenários que falharam ****");
+        System.out.println(stringListaParaPrintAposTodosCenarios);
+        GlobalDriver.close();
+    }
+
+    // -----------------------------------
+    // Método utilitário opcional
+    // -----------------------------------
+    public static void openBrowser(String url) {
+        if (!isNull(driver)) {
+            driver.navigate().to(url);
+        } else {
             throw new RuntimeException("Driver não criado");
         }
     }

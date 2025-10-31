@@ -1,22 +1,27 @@
-# IntelliJ IDEA
-.idea/
-*.iml
-
-# Eclipse
-.classpath
-.project
-.settings/
-
-# Maven
+# Java / Maven
 target/
-
-# Drivers e executáveis
-*.exe
+*.class
 *.jar
 
-# Sistema operacional
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# VSCode
+.vscode/
+
+# OS
 .DS_Store
 Thumbs.db
 
-# Logs e temporários
+# Logs
 *.log
+
+# Drivers
+drivers/
+chromedriver.exe
+
+# Reports
+target/json/
+target/junit/
