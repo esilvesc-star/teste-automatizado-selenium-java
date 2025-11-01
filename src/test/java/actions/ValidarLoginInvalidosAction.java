@@ -19,12 +19,14 @@ public class ValidarLoginInvalidosAction extends Hooks {
     public void preencherUserName(String usuario) throws Exception {
         WebElement campoNome = Helpers.esperarVisibilidade(driver, loginComponent.UserName);
         campoNome.click();
+        campoNome.clear();
         campoNome.sendKeys(usuario);
     }
 
     public void preencherPassWord(String senha) throws Exception {
         WebElement campoSenha = Helpers.esperarVisibilidade(driver, loginComponent.PassWord);
         campoSenha.click();
+        campoSenha.clear();
         campoSenha.sendKeys(senha);
     }
 
