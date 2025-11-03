@@ -13,7 +13,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 //        monochrome = true,
         glue = {"steps"},
         features = "./src/test/resources/features/",
-        tags = "@regressivo",
+        tags = "@regressivos",
         snippets = SnippetType.CAMELCASE
 )
 
