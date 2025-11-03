@@ -13,6 +13,7 @@ public class LoginComponent {
     }
 
     // Elementos Pagina login
+
     @FindBy(xpath = "//*[@id='user-name']")
     public WebElement UserName;
 
@@ -28,7 +29,6 @@ public class LoginComponent {
     @FindBy(xpath = "//div[@class='app_logo']")
     public WebElement HomeLogada;
 
-
     //Elementos da tela principal apos login.
     //Contém o menu lateral e suas opções.
 
@@ -37,5 +37,22 @@ public class LoginComponent {
 
     @FindBy(xpath = "//nav[@class='bm-item-list']//a")
     public List<WebElement> listaOpcoesMenu;
+
+    //Contem o menu Filtro Nome(A to Z)
+
+    @FindBy(xpath = "//*[@class='product_sort_container']")
+    public WebElement MenuFiltro;
+
+    @FindBy(xpath = "//select[@data-test='product-sort-container']/option[@value='az']")
+    public WebElement OpcaoAZ;
+
+    @FindBy(xpath = "//select[@data-test='product-sort-container']/option[@value='za']")
+    public WebElement OpcaoZA;
+
+    @FindBy(xpath = "//select[@data-test='product-sort-container']/option[@value='hilo']")
+    public WebElement OpcaoHilo;
+
+    @FindBy(xpath = "//select[@data-test='product-sort-container']/option[@value='lohi']")
+    public WebElement OpcaoLohi;
 
 }
