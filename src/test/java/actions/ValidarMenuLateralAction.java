@@ -1,6 +1,6 @@
 package actions;
 
-import components.LoginComponent;
+import components.SauceDemoComponent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import steps.Hooks;
@@ -11,22 +11,22 @@ import java.util.List;
 
 public class ValidarMenuLateralAction extends Hooks {
     private final WebDriver webDriver = driver;
-    private final LoginComponent loginComponent;
+    private final SauceDemoComponent sauceDemoComponent;
     private final Helpers helpers;
 
     public ValidarMenuLateralAction() {
-        this.loginComponent = new LoginComponent(driver);
+        this.sauceDemoComponent = new SauceDemoComponent(driver);
         this.helpers = new Helpers();
     }
 
     public void clicarMenuLateral() throws Exception {
-        WebElement menuLateral = Helpers.esperarVisibilidade(driver, loginComponent.MenuLateral);
+        WebElement menuLateral = Helpers.esperarVisibilidade(driver, sauceDemoComponent.MenuLateral);
         menuLateral.click();
     }
     // Metodo que obtém todas as opções do menu lateral e retorna seus textos em uma lista de String.
     // Ele percorre a lista de elementos WebElement e extrai o texto de cada um, removendo espaços extras.
     public List<String> obterOpcoesMenuLateral() {
-        List<WebElement> opcoes = loginComponent.listaOpcoesMenu;
+        List<WebElement> opcoes = sauceDemoComponent.listaOpcoesMenu;
         List<String> textos = new ArrayList<>();
 
         for (WebElement opcao : opcoes) {

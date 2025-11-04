@@ -7,10 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 public class ValidarMenuLateralStep extends Chrome {
     private final ValidarLoginValidoAction validarLoginValidoAction;
